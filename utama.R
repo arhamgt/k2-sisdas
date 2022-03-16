@@ -38,23 +38,27 @@ test_label = factor(testData[, "price_range"])
 
 
 awal_epoch   <- 1
-akhir_epoch <- 30
+akhir_epoch <- 100000
 
 accuracy_vektor <- c()
 epoch_vektor <- c()
+alpha_vektor <- c()
 #######
-for(i in seq(1600*awal_epoch , akhir_epoch*1600 , 1600)){
-  codeBook = lvqinit(train, train_label, size = 100)
-  buildCodeBook = olvq1(train, train_label, codeBook, niter=i, alpha=0.2)
-  predict = lvqtest(buildCodeBook, test)
-  confusionMatrix(test_label, predict)
-  conmat <- confusionMatrix(test_label, predict)
-  
-  accuracy_vektor <- c(accuracy_vektor,conmat$overall["Accuracy"])
-  epoch_vektor <- c(epoch_vektor,i/1600)
+for(i in seq(100*awal_epoch , akhir_epoch*100 , 100)){
+  for(j in seq(0.1, 1, 0.2)){
+    codeBook = lvqinit(train, train_label, size = 100)
+    buildCodeBook = olvq1(train, train_label, codeBook, niter=i, alpha=j)
+    predict = lvqtest(buildCodeBook, test)
+    confusionMatrix(test_label, predict)
+    conmat <- confusionMatrix(test_label, predict)
+    
+    accuracy_vektor <- c(accuracy_vektor,conmat$overall["Accuracy"])
+    epoch_vektor <- c(epoch_vektor,i/100)
+    alpha_vektor <- c(alpha_vektor,j)
+  }
 }
 #######
-data_plot           <- cbind(epoch_vektor,accuracy_vektor)
+data_plot           <- cbind(epoch_vektor,accuracy_vektor, alpha_vektor)
 data_plot           <- data.frame(data_plot)
 rownames(data_plot) <- NULL
 
