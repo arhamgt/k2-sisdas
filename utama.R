@@ -37,13 +37,13 @@ test_label = factor(testData[, "price_range"])
 #######
 
 
-
-banyak_epoch <- 30
+awal_epoch   <- 1
+akhir_epoch <- 30
 
 accuracy_vektor <- c()
 epoch_vektor <- c()
 #######
-for(i in seq(1600 , banyak_epoch*1600 , 1600)){
+for(i in seq(1600*awal_epoch , akhir_epoch*1600 , 1600)){
   codeBook = lvqinit(train, train_label, size = 100)
   buildCodeBook = olvq1(train, train_label, codeBook, niter=i, alpha=0.2)
   predict = lvqtest(buildCodeBook, test)
@@ -62,4 +62,5 @@ ggplot(data_plot , aes(x = epoch_vektor ,y=accuracy_vektor))+
   geom_line()
 
 
-print(paste("Epoch Maksimum",data_plot[which.max(data_plot$accuracy_vektor),]))
+print("Epoch Maksimum")
+print(data_plot[which.max(data_plot$accuracy_vektor),])
