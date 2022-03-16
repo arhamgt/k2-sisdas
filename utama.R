@@ -1,6 +1,6 @@
 library(class)
 library(caret)
-library(ggplot)
+library(ggplot2)
 
 
 set.seed(123)
