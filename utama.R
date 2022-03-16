@@ -56,3 +56,6 @@ rownames(data_plot) <- NULL
 
 ggplot(data_plot , aes(x = epoch_vektor ,y=accuracy_vektor))+
   geom_line()
+
+
+print(paste("Epoch Maksimum",data_plot[which.max(data_plot$accuracy_vektor),]))
