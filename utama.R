@@ -36,10 +36,14 @@ train_label = factor(trainData[, "price_range"])
 test_label = factor(testData[, "price_range"])
 #######
 
+
+
+banyak_epoch <- 30
+
 accuracy_vektor <- c()
 epoch_vektor <- c()
 #######
-for(i in seq(1600 , 1600000, 1600)){
+for(i in seq(1600 , banyak_epoch*1600 , 1600)){
   codeBook = lvqinit(train, train_label, size = 100)
   buildCodeBook = olvq1(train, train_label, codeBook, niter=i, alpha=0.2)
   predict = lvqtest(buildCodeBook, test)
