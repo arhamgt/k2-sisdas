@@ -1,3 +1,6 @@
+# Melakukan import fungsi LVQ yang didapat pada file LVQ.R
+source('LVQ.R')
+
 # Kita mendapatkan bahwa 
 # niter = xxx
 # alpha = xxx
