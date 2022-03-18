@@ -34,11 +34,13 @@ summary(test)
 
 train_label = factor(trainData[, "price_range"])
 test_label = factor(testData[, "price_range"])
+
+
 #######
 
 
-awal_epoch   <- 1
-akhir_epoch <- 100000
+awal_epoch   <- 3800
+akhir_epoch <- 3900
 
 accuracy_vektor <- c()
 epoch_vektor <- c()
@@ -51,10 +53,11 @@ for(i in seq(100*awal_epoch , akhir_epoch*100 , 100)){
     predict = lvqtest(buildCodeBook, test)
     confusionMatrix(test_label, predict)
     conmat <- confusionMatrix(test_label, predict)
-    
+
     accuracy_vektor <- c(accuracy_vektor,conmat$overall["Accuracy"])
     epoch_vektor <- c(epoch_vektor,i/100)
     alpha_vektor <- c(alpha_vektor,j)
+    print(i)
   }
 }
 #######
