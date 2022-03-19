@@ -2,11 +2,11 @@
 source('LVQ.R')
 
 # Kita mendapatkan bahwa 
-# niter = xxx
-# alpha = xxx
+# niter = 3000
+# alpha = 0.9
 # merupakan parameter yang menghasilkan akurasi tertinggi
-niter = 1000
-alpha = 0.3
+niter = 3000
+alpha = 0.9
 cat(sprintf("Matriks perbandingan dari hasil LVQ dengan niter = %d dan alpha = %f\n", niter, alpha))
-conmat <- LVQ(1000, 0.3)
+conmat <- LVQ(niter, alpha)
 print(conmat)

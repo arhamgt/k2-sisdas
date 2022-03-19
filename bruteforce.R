@@ -39,6 +39,7 @@ for(niter in seq(awalEpoch*incrementEpoch , akhirEpoch*incrementEpoch , incremen
     )
     dataPlot <- rbind(dataPlot,newDataPlot)
   }
+  cat(sprintf("Finish running on niter=%d\n", niter))
 }
 #######
 
